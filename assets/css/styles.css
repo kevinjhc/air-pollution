@@ -1,0 +1,189 @@
+@font-face {
+  font-family: "Graphik";
+  src: url("../fonts/graphik/Graphik-300-Light.otf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Graphik";
+  src: url("../fonts/graphik/Graphik-400-Regular.otf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Graphik";
+  src: url("../fonts/graphik/Graphik-500-Medium.otf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Graphik";
+  src: url("../fonts/graphik/Graphik-600-Semibold.otf") format("truetype");
+  font-weight: 600;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Graphik";
+  src: url("../fonts/graphik/Graphik-700-Bold.otf") format("truetype");
+  font-weight: 700;
+  font-style: italic;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: "Graphik", -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+.app-container {
+  display: flex;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 100%;
+}
+
+.sidebar {
+  width: 400px;
+  z-index: 2;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  box-shadow: inset 0px 4px 0px #FFE964;
+  padding-top: 4px;
+}
+
+.panel {
+  margin-bottom: 10px;
+  background: white;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 16px 16px rgba(0, 0, 0, 0.06);
+}
+
+.panel-body {
+  padding: 16px 16px 0;
+  max-height: 450px;
+  overflow-y: scroll;
+}
+
+.panel-display-toggle {
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 500;
+  margin-top: 12px;
+  padding: 6px 16px 4px;
+  border-top: 1px solid rgba(0, 0, 0, .5);
+}
+
+.panel-display-toggle:hover {
+  background: #eee;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.aqi-gradient {
+  width: 100%;
+  height: 14px;
+  background: linear-gradient(270deg, #870181 0%, #CE4318 12.99%, #FFC000 49.68%, #1FB16B 100%);
+  border-radius: 4px;
+}
+
+.color-scale p {
+  font-family: "Monaco";
+  font-size: 11px;
+}
+
+.color {
+  position: relative;
+  width: 14px;
+  height: 14px;
+  left: 0;
+  top: 4px;
+  border-radius: 2px;
+  float: left;
+  margin-right: 4px;
+}
+
+.color.low { background: #009F59; }
+.color.moderate { background: #FFC000; }
+.color.high { background: #C01F1F; }
+.color.veryhigh { background: #562A75; }
+
+.dropdown-menu {
+  width: 100%;
+}
+
+.dropdown-header {
+  text-transform: uppercase;
+}
+
+.dropdown-toggle::after {
+  border-top: 6px solid;
+  border-right: 6px solid transparent;
+  border-bottom: 0;
+  border-left: 6px solid transparent;
+  position: absolute;
+  right: 16px;
+  top: 16px;
+}
+
+#mapid {
+  z-index: 1;
+  position: relative !important;
+  flex-basis: 100%;
+}
+
+.leaflet-container {
+  position: absolute !important;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+};
+
+
+
+.legend {
+    line-height: 18px;
+    color: #555;
+}
+.legend i {
+    width: 18px;
+    height: 18px;
+    float: left;
+    margin-right: 8px;
+    opacity: 0.7;
+}
+
+.info {
+    padding: 6px 8px;
+    font: 14px/16px Arial, Helvetica, sans-serif;
+    background: white;
+    background: rgba(255,255,255,0.8);
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    border-radius: 5px;
+}
+.info h4 {
+    margin: 0 0 5px;
+    color: #777;
+}
+
+.leaflet-popup-content {
+  width: auto !important;
+}

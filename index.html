@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Air Pollution Exposure Monitor | Impact on Urban Health</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
+		<link rel="stylesheet" href="assets/css/styles.css">
+	</head>
+	<body>
+
+		<div class="app-container">
+
+			<div class="sidebar">
+
+				<div class="panel data-controls">
+					<div class="px-3 pt-3 pb-1">
+						<img src="assets/images/logo_lockup.svg">
+					</div>
+
+					<div class="panel-body collapse" id="data-controls-collapse">
+						<div class="dropdown">
+						  <button class="btn btn-outline-dark btn-block text-left dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						    PM 2.5
+						  </button>
+						  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+								<h6 class="dropdown-header">Air Pollutant Types:</h6>
+						    <a class="dropdown-item" href="#">PM 2.5</a>
+						    <a class="dropdown-item" href="#">PM 10</a>
+						    <a class="dropdown-item" href="#">NO2</a>
+								<a class="dropdown-item" href="#">SO2</a>
+								<div class="dropdown-divider"></div>
+								<h6 class="dropdown-header">Movement:</h6>
+								<a class="dropdown-item" href="#">Population movement</a>
+						  </div>
+						</div>
+						<!-- end dropdown -->
+
+						<div class="form-check mt-3">
+						  <input class="form-check-input" type="checkbox" checked>
+						  <label class="form-check-label">
+								<div class="color low"></div>
+								Show all
+							</label>
+						</div>
+						<div class="form-check">
+						  <input class="form-check-input" type="checkbox">
+						  <label class="form-check-label">
+								<div class="color low"></div>
+								Low exposure (1 - 3)
+							</label>
+						</div>
+						<div class="form-check">
+						  <input class="form-check-input" type="checkbox">
+						  <label class="form-check-label">
+								<div class="color moderate"></div>
+								Moderate exposure (4 - 6)
+							</label>
+						</div>
+						<div class="form-check">
+						  <input class="form-check-input" type="checkbox">
+						  <label class="form-check-label">
+								<div class="color high"></div>
+								High exposure (7 - 9)
+							</label>
+						</div>
+						<div class="form-check">
+						  <input class="form-check-input" type="checkbox">
+						  <label class="form-check-label">
+								<div class="color veryhigh"></div>
+								Very high exposure (10)
+							</label>
+						</div>
+
+						<div class="aqi-gradient my-2"></div>
+						<div class="color-scale d-flex flex-row justify-content-between">
+							<p class="mb-0">Low</p>
+							<p class="mb-0">Moderate</p>
+							<p class="mb-0">Very high</p>
+						</div>
+
+						<hr />
+
+						<h6>Age filters:</h6>
+						<div class="form-check">
+						  <input class="form-check-input" type="checkbox" checked>
+						  <label class="form-check-label">Show all age brackets</label>
+						</div>
+						<div class="form-check">
+						  <input class="form-check-input" type="checkbox">
+						  <label class="form-check-label">Age bracket 1</label>
+						</div>
+						<div class="form-check">
+						  <input class="form-check-input" type="checkbox">
+						  <label class="form-check-label">Age bracket 2</label>
+						</div>
+						<div class="form-check">
+						  <input class="form-check-input" type="checkbox">
+						  <label class="form-check-label">Age bracket 3</label>
+						</div>
+
+						<hr />
+
+						<h6>Income filters:</h6>
+						<div class="form-check">
+						  <input class="form-check-input" type="checkbox" checked>
+						  <label class="form-check-label">Show all income brackets</label>
+						</div>
+						<div class="form-check">
+						  <input class="form-check-input" type="checkbox">
+						  <label class="form-check-label">Income bracket 1</label>
+						</div>
+						<div class="form-check">
+						  <input class="form-check-input" type="checkbox">
+						  <label class="form-check-label">Income bracket 2</label>
+						</div>
+						<div class="form-check">
+						  <input class="form-check-input" type="checkbox">
+						  <label class="form-check-label">Income bracket 3</label>
+						</div>
+
+						<hr />
+
+						<h6>Gender filters:</h6>
+						<div class="form-check">
+						  <input class="form-check-input" type="checkbox" checked>
+						  <label class="form-check-label">Show all gender brackets</label>
+						</div>
+						<div class="form-check">
+						  <input class="form-check-input" type="checkbox">
+						  <label class="form-check-label">Gender bracket 1</label>
+						</div>
+						<div class="form-check">
+						  <input class="form-check-input" type="checkbox">
+						  <label class="form-check-label">Gender bracket 2</label>
+						</div>
+						<div class="form-check">
+						  <input class="form-check-input" type="checkbox">
+						  <label class="form-check-label">Gender bracket 3</label>
+						</div>
+
+						<hr />
+
+						<h6>Ethnicity filters:</h6>
+						<div class="form-check">
+						  <input class="form-check-input" type="checkbox" checked>
+						  <label class="form-check-label">Show all ethnicity brackets</label>
+						</div>
+						<div class="form-check">
+						  <input class="form-check-input" type="checkbox">
+						  <label class="form-check-label">Ethnicity bracket 1</label>
+						</div>
+						<div class="form-check">
+						  <input class="form-check-input" type="checkbox">
+						  <label class="form-check-label">Ethnicity bracket 2</label>
+						</div>
+						<div class="form-check">
+						  <input class="form-check-input" type="checkbox">
+						  <label class="form-check-label">Ethnicity bracket 3</label>
+						</div>
+					</div>
+
+					<div class="panel-display-toggle" data-toggle="collapse" href="#data-controls-collapse" role="button" aria-expanded="false" aria-controls="data-controls-collapse">
+						Toggle Data Controls
+					</div>
+				</div>
+				<!-- end data-controls panel -->
+
+				<div class="panel time-controls">
+					<div class="panel-body overflow-auto collapse" id="time-controls-collapse">
+
+						<h6>Playback</h6>
+						<div class="d-flex flex-row">
+							<img class="mr-3" src="assets/images/icon_play.svg">
+						  <button class="btn btn-outline-dark btn-block text-left" type="button">
+						    Feb 19, 2021
+						  </button>
+							<span class="d-flex align-items-center px-3">-</span>
+							<button class="btn btn-outline-dark btn-block text-left mt-0" type="button">
+						    Feb 24, 2021
+						  </button>
+						</div>
+
+					</div>
+
+					<div class="panel-display-toggle time-toggle" data-toggle="collapse" href="#time-controls-collapse" role="button" aria-expanded="false" aria-controls="time-controls-collapse">
+						Toggle Time Controls
+					</div>
+				</div>
+				<!-- end time-controls panel -->
+
+			</div>
+			<!-- end sidebar -->
+			<div id="mapid"></div>
+		</div>
+
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+		<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+		<script src="assets/js/data/london_boroughs.json"></script>
+		<script src="assets/js/data/lambeth_lsoa.json"></script>
+		<script src="assets/js/data/southwark_lsoa.json"></script>
+		<script src="assets/js/map.js"></script>
+
+		<script>
+		function outputUpdate(vol) {
+			document.querySelector('#volume').value = vol;
+		}
+		</script>
+	</body>
+</html>
